@@ -652,8 +652,12 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
     fun setExpandIconVisible(visible: Boolean) {
         if (visible) {
             expandIconView.visibility = View.VISIBLE
+            mTodayIcon.visibility = View.VISIBLE
+            mTxtTitle.visibility = View.VISIBLE
         } else {
             expandIconView.visibility = View.GONE
+            mTodayIcon.visibility = View.GONE
+            mTxtTitle.visibility = View.GONE
         }
     }
 
