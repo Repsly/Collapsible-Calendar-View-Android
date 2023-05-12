@@ -1,6 +1,7 @@
 package com.shrikanthravi.collapsiblecalendarview
 
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +15,10 @@ import com.shrikanthravi.collapsiblecalendarview.data.Day
 import com.shrikanthravi.collapsiblecalendarview.view.OnSwipeTouchListener
 
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+import com.shrikanthravi.collapsiblecalendarview.widget.DayType
 import com.shrikanthravi.collapsiblecalendarview.widget.UICalendar
+import java.time.DayOfWeek
+import java.time.temporal.WeekFields
 
 import java.util.Calendar
 import java.util.Date
@@ -37,7 +41,19 @@ class MainActivity : AppCompatActivity(){
         var relativeLayout = findViewById<ScrollView>(R.id.scrollView)
         var textView = findViewById<TextView>(R.id.tv_date)
 
+
         collapsibleCalendar = findViewById(R.id.collapsibleCalendarView)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val wf: WeekFields = WeekFields.of(collapsibleCalendar.getCurrentLocale(this))
+            var day: DayOfWeek = wf.firstDayOfWeek
+
+            collapsibleCalendar.firstDayOfWeek = DayType.values().first { it.dayName == day.name }.order
+            collapsibleCalendar.mAdapter?.setFirstDayOfWeek(collapsibleCalendar.firstDayOfWeek)
+        } else {
+            null
+        }
+
         relativeLayout.setOnTouchListener(object:OnSwipeTouchListener(this@MainActivity){
             override fun onSwipeRight() {
                 collapsibleCalendar.nextDay()
@@ -60,13 +76,10 @@ class MainActivity : AppCompatActivity(){
             }
         });
         //To hide or show expand icon
-        collapsibleCalendar.setExpandIconVisible(true)
+        collapsibleCalendar.setExpandIconVisible(false)
         val today = GregorianCalendar()
         collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
-        today.add(Calendar.DATE, 1)
         collapsibleCalendar.selectedDay = Day(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
-        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), Color.BLUE)
-        collapsibleCalendar.params = CollapsibleCalendar.Params(0, 100)
         collapsibleCalendar.setCalendarListener(object : CollapsibleCalendar.CalendarListener {
             override fun onDayChanged() {
 

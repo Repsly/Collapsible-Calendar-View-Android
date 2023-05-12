@@ -5,20 +5,28 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.shrikanthravi.collapsiblecalendarview.R
 import com.shrikanthravi.collapsiblecalendarview.data.Day
 import com.shrikanthravi.collapsiblecalendarview.view.ExpandIconView
 import com.shrikanthravi.collapsiblecalendarview.view.LockScrollView
 import com.shrikanthravi.collapsiblecalendarview.view.OnSwipeTouchListener
 import java.util.*
-import android.os.Build
 
 
+public enum class DayType(val order: Int, val dayName: String) {
+    SUNDAY(0, "SUNDAY"),
+    MONDAY(1, "MONDAY"),
+    TUESDAY(2, "TUESDAY"),
+    WEDNESDAY(3, "WEDNESDAY"),
+    THURSDAY(4, "THURSDAY"),
+    FRIDAY(5, "FRIDAY"),
+    SATURDAY(6, "SATURDAY")
+}
 
 @SuppressLint("ClickableViewAccessibility")
 abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ScrollView(context, attrs, defStyleAttr) {
@@ -59,7 +67,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
                 mTableHead.visibility = View.GONE
             }
         }
-    var firstDayOfWeek = SUNDAY
+    var firstDayOfWeek = DayType.SUNDAY.order
         set(firstDayOfWeek) {
             field = firstDayOfWeek
             reload()
@@ -315,21 +323,10 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
     abstract fun changeToToday()
 
     companion object {
-
-
-        // Day of Week
-        val SUNDAY = 0
-        val MONDAY = 1
-        val TUESDAY = 2
-        val WEDNESDAY = 3
-        val THURSDAY = 4
-        val FRIDAY = 5
-        val SATURDAY = 6
         // State
         val STATE_EXPANDED = 0
         val STATE_COLLAPSED = 1
         val STATE_PROCESSING = 2
     }
-
 
 }

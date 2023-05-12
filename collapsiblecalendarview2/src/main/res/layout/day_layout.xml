@@ -12,8 +12,8 @@
         android:layout_width="@dimen/day_circle_width"
         android:layout_height="@dimen/day_circle_height"
         android:gravity="center"
-        android:textSize="13sp"
-        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textColor="#3A3A3A"
         android:background="@android:color/transparent" />
 
     <LinearLayout
@@ -26,10 +26,10 @@
 
         <ImageView
             android:id="@+id/img_event_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
             app:srcCompat="@drawable/dot_icon"
-            android:visibility="gone" />
+            android:visibility="invisible" />
 
     </LinearLayout>
 
