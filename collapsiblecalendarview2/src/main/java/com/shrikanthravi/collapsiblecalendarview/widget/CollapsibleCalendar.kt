@@ -375,6 +375,8 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
 
     fun removeEvents() {
         mAdapter?.removeEvents()
+        reload()
+
     }
 
     fun getItems(): ArrayList<Day>? {
