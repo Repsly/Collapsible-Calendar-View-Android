@@ -42,6 +42,10 @@ class CalendarAdapter(context: Context, cal: Calendar) {
         return mItemList[position]
     }
 
+    fun getItems(): ArrayList<Day> {
+        return mItemList
+    }
+
     fun getView(position: Int): View {
         return mViewList[position]
     }

@@ -373,6 +373,10 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
         reload()
     }
 
+    fun getItems(): ArrayList<Day>? {
+        return mAdapter?.getItems()
+    }
+
     fun prevMonth() {
         val cal = mAdapter!!.calendar
         params.let {
