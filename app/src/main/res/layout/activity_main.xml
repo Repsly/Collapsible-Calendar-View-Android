@@ -16,7 +16,7 @@
         <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
             app:primaryColor="#F5F7FC"
             app:selectedItem_textColor="#FFFFFF"
-            app:selectedItem_background="@drawable/circle_white_solid_background"
+            app:selectedItem_background="@drawable/circle_gray_solid_background"
             android:layout_marginStart="56dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
