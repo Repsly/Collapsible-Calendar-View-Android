@@ -320,7 +320,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         expandIconView.setColor(color)
     }
 
-    abstract fun changeToToday()
+    abstract fun changeToDay(day: Day?, c: Calendar?)
 
     companion object {
         // State

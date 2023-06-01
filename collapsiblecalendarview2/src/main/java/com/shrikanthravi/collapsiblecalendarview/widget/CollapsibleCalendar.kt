@@ -30,15 +30,17 @@ import java.util.*
 
 
 class CollapsibleCalendar : UICalendar, View.OnClickListener {
-    override fun changeToToday() {
+    override fun changeToDay(day: Day?, c: Calendar?) {
         val calendar = Calendar.getInstance()
-        val calenderAdapter = CalendarAdapter(context, calendar);
+        val calenderAdapter = CalendarAdapter(context, c?: calendar)
         calenderAdapter.mEventList = mAdapter!!.mEventList
         calenderAdapter.setFirstDayOfWeek(firstDayOfWeek)
         val today = GregorianCalendar()
-        this.selectedItem = null
-        this.selectedItemPosition = -1
-        this.selectedDay = Day(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
+        if (day == null) {
+            this.selectedItem = null
+            this.selectedItemPosition = -1
+        }
+        this.selectedDay = day ?: Day(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
         mCurrentWeekIndex = suitableRowIndex
         setAdapter(calenderAdapter)
     }
@@ -188,7 +190,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
 
         mBtnNextWeek.setOnClickListener { nextWeek() }
 
-        mTodayIcon.setOnClickListener { changeToToday() }
+        mTodayIcon.setOnClickListener { changeToDay(null, null) }
 
         expandIconView.setState(ExpandIconView.MORE, true)
 

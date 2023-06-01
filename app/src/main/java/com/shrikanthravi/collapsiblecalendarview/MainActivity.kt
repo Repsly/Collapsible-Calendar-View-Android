@@ -78,8 +78,15 @@ class MainActivity : AppCompatActivity(){
         //To hide or show expand icon
         collapsibleCalendar.setExpandIconVisible(false)
         val today = GregorianCalendar()
-        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
-        collapsibleCalendar.selectedDay = Day(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.YEAR, 2023)
+        calendar.set(Calendar.MONTH, Calendar.JULY)
+        calendar.set(Calendar.DAY_OF_MONTH, 11)
+
+        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), R.color.cardview_shadow_end_color)
+        collapsibleCalendar.select(Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)))
+        //collapsibleCalendar.changeToDay(Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)), calendar)
+        collapsibleCalendar.changeToDay(null, null)
         collapsibleCalendar.setCalendarListener(object : CollapsibleCalendar.CalendarListener {
             override fun onDayChanged() {
 
