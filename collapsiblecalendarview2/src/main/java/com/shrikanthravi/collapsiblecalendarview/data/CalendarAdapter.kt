@@ -58,6 +58,10 @@ class CalendarAdapter(context: Context, cal: Calendar) {
         mEventList.add(event)
     }
 
+    fun removeEvents () {
+        mEventList.clear()
+    }
+
     fun refresh() {
         // clear data
         mItemList.clear()

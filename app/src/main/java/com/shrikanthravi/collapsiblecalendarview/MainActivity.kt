@@ -84,6 +84,14 @@ class MainActivity : AppCompatActivity(){
         calendar.set(Calendar.DAY_OF_MONTH, 11)
 
         collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), R.color.cardview_shadow_end_color)
+        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, R.color.cardview_shadow_end_color)
+        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 2, R.color.cardview_shadow_end_color)
+        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 3, R.color.cardview_shadow_end_color)
+        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 4, R.color.cardview_shadow_end_color)
+        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 5, R.color.cardview_shadow_end_color)
+
+        collapsibleCalendar.removeEvents()
+
         collapsibleCalendar.select(Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)))
         //collapsibleCalendar.changeToDay(Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)), calendar)
         collapsibleCalendar.changeToDay(null, null)
