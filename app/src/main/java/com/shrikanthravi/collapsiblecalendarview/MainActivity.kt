@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity(){
         supportActionBar!!.elevation = 0f
         window.statusBarColor = resources.getColor(R.color.google_red)
         var relativeLayout = findViewById<ScrollView>(R.id.scrollView)
-        var textView = findViewById<TextView>(R.id.tv_date)
 
 
         collapsibleCalendar = findViewById(R.id.collapsibleCalendarView)
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity(){
         collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 4, R.color.cardview_shadow_end_color)
         collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 5, R.color.cardview_shadow_end_color)
 
-        collapsibleCalendar.removeEvents()
+        //collapsibleCalendar.removeEvents()
 
         collapsibleCalendar.select(Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)))
         //collapsibleCalendar.changeToDay(Day(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)), calendar)
@@ -114,7 +113,7 @@ class MainActivity : AppCompatActivity(){
             }
 
             override fun onDaySelect() {
-                textView.text = collapsibleCalendar.selectedDay?.toUnixTime().toString()
+                //textView.text = collapsibleCalendar.selectedDay?.toUnixTime().toString()
             }
 
             override fun onItemClick(v: View) {

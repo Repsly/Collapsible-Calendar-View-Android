@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
     <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/txt_day"
         android:layout_width="@dimen/day_circle_width"
         android:layout_height="@dimen/day_circle_height"
@@ -17,6 +18,8 @@
         android:background="@android:color/transparent" />
 
     <LinearLayout
+        android:id="@+id/event_layout"
+        app:layout_constraintTop_toBottomOf="@id/txt_day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="2dp"
@@ -33,4 +36,29 @@
 
     </LinearLayout>
 
-</LinearLayout >
+    <View
+        android:visibility="gone"
+        android:id="@+id/holder_view"
+        app:layout_constraintTop_toBottomOf="@id/event_layout"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/bottom_line"
+        app:layout_constraintTop_toBottomOf="@id/holder_view"
+        android:background="#E1E7F2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/end_line"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#E1E7F2"
+        android:layout_width="1dp"
+        android:layout_height="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout >

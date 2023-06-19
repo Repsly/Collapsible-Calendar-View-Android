@@ -17,8 +17,11 @@ abstract class OnSwipeTouchListener(ctx: Context) : OnTouchListener {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    override fun onTouch(v: View, event: MotionEvent): Boolean {
-        return gestureDetector.onTouchEvent(event)
+    override fun onTouch(v: View, event: MotionEvent?): Boolean {
+        event?.let {
+            return gestureDetector.onTouchEvent(it)
+        }
+        return false
     }
 
     private inner class GestureListener : SimpleOnGestureListener() {
@@ -27,31 +30,36 @@ abstract class OnSwipeTouchListener(ctx: Context) : OnTouchListener {
             return false
         }
 
-        override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+        override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
             var result = false
-            try {
-                val diffY = e2.y - e1.y
-                val diffX = e2.x - e1.x
-                if (Math.abs(diffX) > Math.abs(diffY)) {
-                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffX > 0) {
-                            onSwipeRight()
-                        } else {
-                            onSwipeLeft()
+            e1?.let {  e1NonNull ->
+                e2?.let {  e2NonNull ->
+                    try {
+                        val diffY = e2NonNull.y - e1NonNull.y
+                        val diffX = e2NonNull.x - e1NonNull.x
+                        if (Math.abs(diffX) > Math.abs(diffY)) {
+                            if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                                if (diffX > 0) {
+                                    onSwipeRight()
+                                } else {
+                                    onSwipeLeft()
+                                }
+                                result = true
+                            }
+                        } else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+                            if (diffY > 0) {
+                                onSwipeBottom()
+                            } else {
+                                onSwipeTop()
+                            }
+                            result = true
                         }
-                        result = true
+                    } catch (exception: Exception) {
+                        exception.printStackTrace()
                     }
-                } else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffY > 0) {
-                        onSwipeBottom()
-                    } else {
-                        onSwipeTop()
-                    }
-                    result = true
                 }
-            } catch (exception: Exception) {
-                exception.printStackTrace()
             }
+
 
             return result
         }

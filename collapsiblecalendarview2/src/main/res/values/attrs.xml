@@ -16,7 +16,7 @@
 
         <attr name="showWeek" format="boolean" />
         <attr name="hideArrows" format="boolean" value="true"/>
-        <attr name="disableCollapse" format="boolean" value="false"/>
+        <attr name="monthlyViewOnly" format="boolean" value="false"/>
         <attr name="datePattern" format="string" value="MMMM"/>
 
         <attr name="firstDayOfWeek" format="enum">
