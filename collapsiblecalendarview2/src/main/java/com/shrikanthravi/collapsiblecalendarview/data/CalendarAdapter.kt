@@ -18,6 +18,7 @@ import java.util.Calendar
 
 class CalendarAdapter(context: Context, cal: Calendar) {
     private var mFirstDayOfWeek = 0
+    private var mNumberOfWeeks = 0
     var calendar: Calendar
     private val mInflater: LayoutInflater
 
@@ -54,6 +55,10 @@ class CalendarAdapter(context: Context, cal: Calendar) {
         mFirstDayOfWeek = firstDayOfWeek
     }
 
+    fun setNumberOfWeeks(numberOfWeeks: Int) {
+        mNumberOfWeeks = numberOfWeeks
+    }
+
     fun addEvent(event: Event) {
         mEventList.add(event)
     }
@@ -78,7 +83,7 @@ class CalendarAdapter(context: Context, cal: Calendar) {
 
         // generate day list
         val offset = 0 - (firstDayOfWeek - mFirstDayOfWeek) + 1
-        val length = Math.ceil(((lastDayOfMonth - offset + 1).toFloat() / 7).toDouble()).toInt() * 7
+        val length = if (mNumberOfWeeks > 0) mNumberOfWeeks * 7 else Math.ceil(((lastDayOfMonth - offset + 1).toFloat() / 7).toDouble()).toInt() * 7
         for (i in offset until length + offset) {
             val numYear: Int
             val numMonth: Int

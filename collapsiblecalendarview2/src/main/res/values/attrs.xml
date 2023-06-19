@@ -53,6 +53,9 @@
 
         <attr name="expandIconColor" format="color" />
 
+        <attr name="number_of_weeks" format="integer" />
+
+
     </declare-styleable>
 
 

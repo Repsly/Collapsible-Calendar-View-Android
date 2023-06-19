@@ -35,6 +35,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
         val calenderAdapter = CalendarAdapter(context, c?: calendar)
         calenderAdapter.mEventList = mAdapter!!.mEventList
         calenderAdapter.setFirstDayOfWeek(firstDayOfWeek)
+        calenderAdapter.setNumberOfWeeks(numberOfWeeks)
         val today = GregorianCalendar()
         if (day == null) {
             this.selectedItem = null
@@ -352,7 +353,9 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
     // public methods
     fun setAdapter(adapter: CalendarAdapter) {
         mAdapter = adapter
+
         adapter.setFirstDayOfWeek(firstDayOfWeek)
+        adapter.setNumberOfWeeks(numberOfWeeks)
 
         reload()
 

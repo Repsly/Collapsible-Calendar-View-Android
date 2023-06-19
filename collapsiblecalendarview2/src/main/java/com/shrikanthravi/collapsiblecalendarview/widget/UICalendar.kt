@@ -72,6 +72,11 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
             field = firstDayOfWeek
             reload()
         }
+    var numberOfWeeks = 0
+        set(numberOfWeeks) {
+            field = numberOfWeeks
+            reload()
+        }
     var hideArrow = true
         set(value: Boolean) {
             field = value
@@ -246,6 +251,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         //setStyle(attrs.getInt(R.styleable.UICalendar_style, mStyle));
         isShowWeek = attrs.getBoolean(R.styleable.UICalendar_showWeek, isShowWeek)
         firstDayOfWeek = attrs.getInt(R.styleable.UICalendar_firstDayOfWeek, firstDayOfWeek)
+        numberOfWeeks = attrs.getInt(R.styleable.UICalendar_number_of_weeks, numberOfWeeks)
         hideArrow = attrs.getBoolean(R.styleable.UICalendar_hideArrows, hideArrow)
         datePattern = attrs.getString(R.styleable.UICalendar_datePattern).let {
             if (it == null)

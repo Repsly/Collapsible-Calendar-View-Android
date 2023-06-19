@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context="com.shrikanthravi.collapsiblecalendarview.MainActivity"
         android:id="@+id/main_layout"
         android:layout_width="match_parent">
@@ -17,9 +17,10 @@
             app:primaryColor="#F5F7FC"
             app:selectedItem_textColor="#FFFFFF"
             app:selectedItem_background="@drawable/circle_gray_solid_background"
+            app:number_of_weeks="6"
             android:layout_marginStart="56dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/collapsibleCalendarView">
         </com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
