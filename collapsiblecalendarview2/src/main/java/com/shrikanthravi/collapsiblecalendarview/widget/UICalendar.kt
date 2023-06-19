@@ -77,6 +77,10 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
             field = numberOfWeeks
             reload()
         }
+    var disableCollapse = false
+        set(disableCollapse) {
+            field = disableCollapse
+        }
     var hideArrow = true
         set(value: Boolean) {
             field = value
@@ -168,7 +172,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
     fun getSwipe(context: Context): OnSwipeTouchListener {
         return object : OnSwipeTouchListener(context) {
             override fun onSwipeTop() {
-                if (state == STATE_EXPANDED)
+                if (state == STATE_EXPANDED && !disableCollapse)
                     expandIconView.performClick()
             }
 
@@ -189,7 +193,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
             }
 
             override fun onSwipeBottom() {
-                if (state == STATE_COLLAPSED)
+                if (state == STATE_COLLAPSED && !disableCollapse)
                     expandIconView.performClick()
             }
         }
@@ -253,6 +257,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         firstDayOfWeek = attrs.getInt(R.styleable.UICalendar_firstDayOfWeek, firstDayOfWeek)
         numberOfWeeks = attrs.getInt(R.styleable.UICalendar_number_of_weeks, numberOfWeeks)
         hideArrow = attrs.getBoolean(R.styleable.UICalendar_hideArrows, hideArrow)
+        disableCollapse = attrs.getBoolean(R.styleable.UICalendar_disableCollapse, disableCollapse)
         datePattern = attrs.getString(R.styleable.UICalendar_datePattern).let {
             if (it == null)
                 datePattern

@@ -18,7 +18,7 @@
             app:selectedItem_textColor="#FFFFFF"
             app:selectedItem_background="@drawable/circle_gray_solid_background"
             app:number_of_weeks="6"
-            android:layout_marginStart="56dp"
+            app:disableCollapse="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"

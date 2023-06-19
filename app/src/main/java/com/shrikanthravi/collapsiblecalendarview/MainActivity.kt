@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity(){
 
 
         collapsibleCalendar = findViewById(R.id.collapsibleCalendarView)
+        collapsibleCalendar.expand(0)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val wf: WeekFields = WeekFields.of(collapsibleCalendar.getCurrentLocale(this))
@@ -64,15 +65,15 @@ class MainActivity : AppCompatActivity(){
             }
 
             override fun onSwipeTop() {
-                if(collapsibleCalendar.expanded){
-                    collapsibleCalendar.collapse(400)
-                }
+//                if(collapsibleCalendar.expanded){
+//                    collapsibleCalendar.collapse(400)
+//                }
             }
 
             override fun onSwipeBottom() {
-                if(!collapsibleCalendar.expanded){
-                    collapsibleCalendar.expand(400)
-                }
+//                if(!collapsibleCalendar.expanded){
+//                    collapsibleCalendar.expand(400)
+//                }
             }
         });
         //To hide or show expand icon
