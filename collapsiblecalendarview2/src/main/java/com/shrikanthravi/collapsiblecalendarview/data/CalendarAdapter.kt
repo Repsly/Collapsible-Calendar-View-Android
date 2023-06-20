@@ -1,22 +1,28 @@
 package com.shrikanthravi.collapsiblecalendarview.data
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
+import android.text.TextUtils
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-
+import androidx.core.content.ContextCompat
 import com.shrikanthravi.collapsiblecalendarview.R
-
-import java.util.ArrayList
-import java.util.Calendar
+import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+import java.util.*
 
 /**
  * Created by shrikanthravi on 06/03/18.
  */
 
-class CalendarAdapter(context: Context, cal: Calendar) {
+class CalendarAdapter(private val context: Context, cal: Calendar) {
     private var mFirstDayOfWeek = 0
     private var mNumberOfWeeks = 0
     var calendar: Calendar
@@ -25,6 +31,14 @@ class CalendarAdapter(context: Context, cal: Calendar) {
     private val mItemList = ArrayList<Day>()
     private val mViewList = ArrayList<View>()
     var mEventList = ArrayList<Event>()
+    var mScheduleList = ArrayList<Schedule>()
+
+    private var mListener: ScheduleListener? = null
+
+    // callback
+    fun setCalendarListener(listener: ScheduleListener) {
+        mListener = listener
+    }
 
     // public methods
     val count: Int
@@ -65,6 +79,15 @@ class CalendarAdapter(context: Context, cal: Calendar) {
 
     fun removeEvents () {
         mEventList.clear()
+    }
+
+    fun addSchedules(schedule: List<Schedule>) {
+        mScheduleList.clear()
+        mScheduleList.addAll(schedule)
+    }
+
+    fun removeSchedules () {
+        mScheduleList.clear()
     }
 
     fun refresh() {
@@ -121,6 +144,7 @@ class CalendarAdapter(context: Context, cal: Calendar) {
             val view = mInflater.inflate(R.layout.day_layout, null)
             val txtDay = view.findViewById<View>(R.id.txt_day) as TextView
             val imgEventTag = view.findViewById<View>(R.id.img_event_tag) as ImageView
+            val holderView = view.findViewById<View>(R.id.holder_view) as LinearLayout
 
             txtDay.text = day.day.toString()
             if (day.month != calendar.get(Calendar.MONTH)) {
@@ -137,8 +161,54 @@ class CalendarAdapter(context: Context, cal: Calendar) {
                 }
             }
 
+
+            for (j in mScheduleList.indices) {
+                val schedule = mScheduleList[j]
+                if (day.year == schedule.year
+                    && day.month == schedule.month
+                    && day.day == schedule.day) {
+                    addScheduleView(schedule.placeName, schedule.tag, schedule.color,  holderView)
+                }
+            }
+
             mItemList.add(day)
             mViewList.add(view)
         }
+    }
+
+    private fun addScheduleView(placeName: String, tag: String, color: String, holderView: LinearLayout) {
+        val density = context.resources.displayMetrics.density
+
+        val scheduleView = TextView(context)
+        scheduleView.text = placeName
+        scheduleView.tag = tag
+        scheduleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
+        scheduleView.setTextColor(ContextCompat.getColor(context, R.color.gray_button_text))
+        scheduleView.setTypeface(null, Typeface.BOLD)
+        scheduleView.ellipsize = TextUtils.TruncateAt.END
+        scheduleView.isSingleLine = true
+        scheduleView.setOnClickListener {
+            mListener?.onScheduleClicked(it.tag as String)
+        }
+
+        val shapeDrawable = GradientDrawable()
+        shapeDrawable.shape = GradientDrawable.RECTANGLE
+        shapeDrawable.cornerRadius = 12f
+        shapeDrawable.setColor(Color.parseColor(color))
+        scheduleView.background = shapeDrawable
+
+        val density4 = (4 * density).toInt()
+        val density2 = (2 * density).toInt()
+        scheduleView.setPadding(density4, 0, density2, 0)
+
+        val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (14 * density).toInt())
+        layoutParams.setMargins(density2, density2, density2, 0)
+        scheduleView.layoutParams = layoutParams
+
+        holderView.addView(scheduleView)
+    }
+
+    interface ScheduleListener {
+        fun onScheduleClicked(scheduleId: String)
     }
 }

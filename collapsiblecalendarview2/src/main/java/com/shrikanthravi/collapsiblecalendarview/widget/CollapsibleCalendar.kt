@@ -23,6 +23,7 @@ import com.shrikanthravi.collapsiblecalendarview.R
 import com.shrikanthravi.collapsiblecalendarview.data.CalendarAdapter
 import com.shrikanthravi.collapsiblecalendarview.data.Day
 import com.shrikanthravi.collapsiblecalendarview.data.Event
+import com.shrikanthravi.collapsiblecalendarview.data.Schedule
 import com.shrikanthravi.collapsiblecalendarview.view.BounceAnimator
 import com.shrikanthravi.collapsiblecalendarview.view.ExpandIconView
 import kotlinx.android.synthetic.main.day_layout.view.*
@@ -32,11 +33,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CollapsibleCalendar : UICalendar, View.OnClickListener {
+class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.ScheduleListener {
     override fun changeToDay(day: Day?, c: Calendar?) {
         val calendar = Calendar.getInstance()
         val calenderAdapter = CalendarAdapter(context, c?: calendar)
+        calenderAdapter.setCalendarListener(this)
         calenderAdapter.mEventList = mAdapter!!.mEventList
+        calenderAdapter.mScheduleList = mAdapter!!.mScheduleList
         calenderAdapter.setFirstDayOfWeek(firstDayOfWeek)
         calenderAdapter.setNumberOfWeeks(numberOfWeeks)
         val today = GregorianCalendar()
@@ -59,6 +62,10 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
                 }
             }
         }
+    }
+
+    override fun onScheduleClicked(scheduleId: String) {
+        mListener?.onScheduleClicked(scheduleId)
     }
 
     var mAdapter: CalendarAdapter? = null
@@ -236,7 +243,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
             }
         }
         val height =  Resources.getSystem().displayMetrics.heightPixels
-        val otherViewHeight = ((70) * resources.displayMetrics.density).toInt()
+        val otherViewHeight = ((55) * resources.displayMetrics.density).toInt()
 
         // redraw all views of day
         if (mAdapter != null) {
@@ -382,6 +389,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
 
         adapter.setFirstDayOfWeek(firstDayOfWeek)
         adapter.setNumberOfWeeks(numberOfWeeks)
+        adapter.setCalendarListener(this)
 
         reload()
 
@@ -397,6 +405,13 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
 
     fun addEventTag(numYear: Int, numMonth: Int, numDay: Int, color: Int) {
         mAdapter!!.addEvent(Event(numYear, numMonth, numDay, color))
+
+
+        reload()
+    }
+
+    fun addSchedules(schedules: List<Schedule>) {
+        mAdapter?.addSchedules(schedules)
 
 
         reload()
@@ -688,6 +703,8 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
         fun onClickListener()
 
         fun onDayChanged()
+
+        fun onScheduleClicked(scheduleId: String)
     }
 
     fun setExpandIconVisible(visible: Boolean) {
