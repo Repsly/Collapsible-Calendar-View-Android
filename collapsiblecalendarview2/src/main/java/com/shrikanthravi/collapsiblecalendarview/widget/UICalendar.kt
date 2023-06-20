@@ -50,6 +50,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
     protected var mBtnNextWeek: ImageView
     protected var expandIconView: ExpandIconView
     protected var clEntireTextView: LinearLayout
+    protected var topRoundedView: LinearLayout
     protected var mTodayIcon : ImageView
     var datePattern = "MMMM"
         set(value: String) {
@@ -229,6 +230,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         mScrollViewBody = rootView.findViewById(R.id.scroll_view_body)
         expandIconView = rootView.findViewById(R.id.expandIcon)
         clEntireTextView = rootView.findViewById(R.id.cl_title)
+        topRoundedView = rootView.findViewById(R.id.rounded_top_view)
         clEntireTextView.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
             expandIconView.performClick()
         })
@@ -309,6 +311,12 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         setButtonRightDrawableTintColor(attrs.getColor(R.styleable.UICalendar_buttonRight_drawableTintColor, mButtonRightDrawableTintColor))
         setExpandIconColor(attrs.getColor(R.styleable.UICalendar_expandIconColor, mExpandIconColor))
         val selectedItem: Day? = null
+
+        if (monthlyViewOnly) {
+            topRoundedView.visibility = View.VISIBLE
+        } else {
+            topRoundedView.visibility = View.GONE
+        }
     }
 
     fun setButtonLeftDrawableTintColor(color: Int) {

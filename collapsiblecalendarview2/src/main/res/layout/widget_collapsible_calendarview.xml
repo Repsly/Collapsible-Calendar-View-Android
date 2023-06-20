@@ -117,6 +117,20 @@
         android:layout_height="wrap_content">
 
     </TableLayout>
+
+
+    <LinearLayout
+        android:id="@+id/rounded_top_view"
+        android:background="#F5F7FC"
+        android:layout_width="match_parent"
+        android:layout_height="16dp">
+        <View
+            android:background="@drawable/top_view_rounded_white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
     <com.shrikanthravi.collapsiblecalendarview.view.LockScrollView
         android:id="@+id/scroll_view_body"
         android:layout_width="match_parent"

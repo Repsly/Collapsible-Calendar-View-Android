@@ -236,7 +236,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener {
             }
         }
         val height =  Resources.getSystem().displayMetrics.heightPixels
-        val otherViewHeight = ((67) * resources.displayMetrics.density).toInt()
+        val otherViewHeight = ((70) * resources.displayMetrics.density).toInt()
 
         // redraw all views of day
         if (mAdapter != null) {
