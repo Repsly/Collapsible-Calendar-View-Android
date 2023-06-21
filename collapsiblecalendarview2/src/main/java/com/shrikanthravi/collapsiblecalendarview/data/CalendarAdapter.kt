@@ -1,21 +1,20 @@
 package com.shrikanthravi.collapsiblecalendarview.data
 
 import android.content.Context
-import android.graphics.Color
+import android.content.res.Resources
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.text.TextUtils
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.shrikanthravi.collapsiblecalendarview.R
-import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
 import java.util.*
 
 /**
@@ -161,23 +160,75 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
                 }
             }
 
+            val height =  Resources.getSystem().displayMetrics.heightPixels
+            val otherViewHeight = ((56) * context.resources.displayMetrics.density).toInt()
 
-            for (j in mScheduleList.indices) {
-                val schedule = mScheduleList[j]
-                if (day.year == schedule.year
-                    && day.month == schedule.month
-                    && day.day == schedule.day) {
-                    addScheduleView(schedule.placeName, schedule.tag, schedule.color,  holderView)
+            val bottomLineView = view.findViewById<View>(R.id.bottom_line) as View
+            val endLineView = view.findViewById<View>(R.id.end_line) as View
+
+            var holderViewHeight = 0
+            if (mNumberOfWeeks > 0) {
+                holderViewHeight = (height / 6) - otherViewHeight
+                holderView.layoutParams.height = holderViewHeight
+                holderView.visibility = View.VISIBLE
+                endLineView.visibility = View.VISIBLE
+                if (i < length + offset - 7) {
+                    bottomLineView.visibility = View.VISIBLE
+                } else {
+                    bottomLineView.visibility = View.GONE
+                }
+            } else {
+                holderView.visibility = View.GONE
+                bottomLineView.visibility = View.GONE
+                endLineView.visibility = View.GONE
+            }
+            val density = context.resources.displayMetrics.density
+            val oneItemHeight = (16 * density).toInt()
+            val numberOfItemsThatCanBeAdded: Int = holderViewHeight / oneItemHeight
+            val numberOfItemsOnADay = mScheduleList.filter { day.year == it.year && day.month == it.month && day.day == it.day }
+
+            if (holderViewHeight > 0) {
+                var addedItems = 0
+
+                for (item in numberOfItemsOnADay) {
+                    if (numberOfItemsThatCanBeAdded == numberOfItemsOnADay.count() || numberOfItemsThatCanBeAdded - 1 > addedItems) {
+                        addedItems++
+                        addScheduleView(
+                            item.placeName,
+                            item.tag,
+                            item.type.color,
+                            holderView,
+                            density
+                        )
+                    } else {
+                        break
+                    }
+                }
+
+                if (addedItems < numberOfItemsOnADay.count()) {
+                    addScheduleView(
+                        "+ ${numberOfItemsOnADay.count() - addedItems}",
+                        day,
+                        R.color.white,
+                        holderView,
+                        density
+                    )
                 }
             }
+
 
             mItemList.add(day)
             mViewList.add(view)
         }
     }
 
-    private fun addScheduleView(placeName: String, tag: String, color: String, holderView: LinearLayout) {
-        val density = context.resources.displayMetrics.density
+    private fun addScheduleView(
+        placeName: String,
+        tag: Any,
+        color: Int,
+        holderView: LinearLayout,
+        density: Float
+    ) {
 
         val scheduleView = TextView(context)
         scheduleView.text = placeName
@@ -188,13 +239,13 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
         scheduleView.ellipsize = TextUtils.TruncateAt.END
         scheduleView.isSingleLine = true
         scheduleView.setOnClickListener {
-            mListener?.onScheduleClicked(it.tag as String)
+            mListener?.onScheduleClicked(it.tag)
         }
 
         val shapeDrawable = GradientDrawable()
         shapeDrawable.shape = GradientDrawable.RECTANGLE
         shapeDrawable.cornerRadius = 12f
-        shapeDrawable.setColor(Color.parseColor(color))
+        shapeDrawable.setColor(ContextCompat.getColor(context, color))
         scheduleView.background = shapeDrawable
 
         val density4 = (4 * density).toInt()
@@ -209,6 +260,6 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
     }
 
     interface ScheduleListener {
-        fun onScheduleClicked(scheduleId: String)
+        fun onScheduleClicked(tag: Any)
     }
 }

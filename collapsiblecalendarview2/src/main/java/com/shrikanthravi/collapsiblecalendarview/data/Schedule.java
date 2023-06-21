@@ -8,15 +8,15 @@ public class Schedule {
     private int mYear;
     private int mMonth;
     private int mDay;
-    private String mColor;
+    private ScheduleType type;
     private String tag;
     private String placeName;
 
-    public Schedule(int year, int month, int day, String color, String placeName, String tag){
+    public Schedule(int year, int month, int day, ScheduleType type, String placeName, String tag){
         this.mYear = year;
         this.mMonth = month;
         this.mDay = day;
-        this.mColor = color;
+        this.type = type;
         this.placeName = placeName;
         this.tag = tag;
     }
@@ -33,8 +33,8 @@ public class Schedule {
         return mDay;
     }
 
-    public String getColor() {
-        return mColor;
+    public ScheduleType getType() {
+        return type;
     }
 
     public String getTag() {return tag;}

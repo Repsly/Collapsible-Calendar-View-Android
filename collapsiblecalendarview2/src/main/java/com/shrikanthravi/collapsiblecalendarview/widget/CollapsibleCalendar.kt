@@ -10,6 +10,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.os.Handler
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
@@ -64,8 +65,12 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
         }
     }
 
-    override fun onScheduleClicked(scheduleId: String) {
-        mListener?.onScheduleClicked(scheduleId)
+    override fun onScheduleClicked(tag: Any) {
+        if (tag is String) {
+            mListener?.onScheduleClicked(tag)
+        } else if (tag is Day) {
+            Log.e("DAN", tag.day.toString())
+        }
     }
 
     var mAdapter: CalendarAdapter? = null
@@ -242,8 +247,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
                 (rowWeek.getChildAt(i) as TextView).setTextColor(textColor)
             }
         }
-        val height =  Resources.getSystem().displayMetrics.heightPixels
-        val otherViewHeight = ((55) * resources.displayMetrics.density).toInt()
+
 
         // redraw all views of day
         if (mAdapter != null) {
@@ -266,24 +270,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
                     txtDay.setTextColor(selectedItemTextColor)
                 }
 
-                val holderView = view.findViewById<View>(R.id.holder_view) as View
-                val bottomLineView = view.findViewById<View>(R.id.bottom_line) as View
-                val endLineView = view.findViewById<View>(R.id.end_line) as View
 
-                if (monthlyViewOnly) {
-                    holderView.layoutParams.height = (height / 6) - otherViewHeight
-                    holderView.visibility = View.VISIBLE
-                    endLineView.visibility = View.VISIBLE
-                    if (i < 42 - 7) {
-                        bottomLineView.visibility = View.VISIBLE
-                    } else {
-                        bottomLineView.visibility = View.GONE
-                    }
-                } else {
-                    holderView.visibility = View.GONE
-                    bottomLineView.visibility = View.GONE
-                    endLineView.visibility = View.GONE
-                }
             }
         }
     }

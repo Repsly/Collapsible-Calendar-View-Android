@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shrikanthravi.collapsiblecalendarview.data.Day
 import com.shrikanthravi.collapsiblecalendarview.data.Schedule
+import com.shrikanthravi.collapsiblecalendarview.data.ScheduleType
 import com.shrikanthravi.collapsiblecalendarview.view.OnSwipeTouchListener
 
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
@@ -94,11 +95,21 @@ class MainActivity : AppCompatActivity(){
         collapsibleCalendar.removeEvents()
 
         val schedules = mutableListOf<Schedule>()
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), "#FFE7E7", "Place 1", "1"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), "#DEFFEB", "Place 2", "2"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), "#D2E2FF", "Place 3 12 152152 15 51", "3"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), "#E1E7F2", "Place 4", "4"))
-//        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), "#DEFFEB", "Place 5", "5"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.MISSED, "Place 1", "1"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.DONE, "Place 2", "2"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.UNPLANNED, "Place 3 12 152152 15 51", "3"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 4", "4"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 5", "5"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 6", "6"))
+//        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 7", "7"))
+
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.MISSED, "Place 11", "1"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.DONE, "Place 22", "2"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.UNPLANNED, "Place 33 12 152152 15 51", "3"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 44", "4"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 55", "5"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 66", "6"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 77", "7"))
 
         collapsibleCalendar.addSchedules(schedules)
 
