@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:background="#FFFFFF"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,8 +20,17 @@
             app:monthlyViewOnly="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/collapsibleCalendarView">
         </com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
+
+        <View
+            android:background="@color/google_red"
+            android:id="@+id/view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+        </View>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

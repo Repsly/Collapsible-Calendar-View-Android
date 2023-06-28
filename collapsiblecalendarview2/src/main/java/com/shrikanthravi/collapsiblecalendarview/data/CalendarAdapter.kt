@@ -161,7 +161,7 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
             }
 
             val height =  Resources.getSystem().displayMetrics.heightPixels
-            val otherViewHeight = ((56) * context.resources.displayMetrics.density).toInt()
+            val otherViewHeight = ((65) * context.resources.displayMetrics.density).toInt()
 
             val bottomLineView = view.findViewById<View>(R.id.bottom_line) as View
             val endLineView = view.findViewById<View>(R.id.end_line) as View
