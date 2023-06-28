@@ -44,6 +44,7 @@
         <attr name="todayItem_background" format="integer" />
 
         <attr name="selectedItem_textColor" format="color" />
+        <attr name="item_backgroundColor" format="color" />
         <attr name="selectedItem_background" format="integer" />
 
         <attr name="buttonLeft_drawable" format="integer" />

@@ -131,6 +131,12 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
             field = selectedItemTextColor
             redraw()
         }
+
+    var itemBackgroundColor = Color.WHITE
+        set(itemBackgroundColor) {
+            field = itemBackgroundColor
+            redraw()
+        }
     var selectedItemBackgroundDrawable = resources.getDrawable(R.drawable.circle_black_solid_background)
         set(selectedItemBackground) {
             field = selectedItemBackground
@@ -284,8 +290,9 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
             this.todayItemBackgroundDrawable = todayItemBackgroundDrawable
         }
 
-        selectedItemTextColor = attrs.getColor(
-                R.styleable.UICalendar_selectedItem_textColor, selectedItemTextColor)
+        selectedItemTextColor = attrs.getColor(R.styleable.UICalendar_selectedItem_textColor, selectedItemTextColor)
+        itemBackgroundColor = attrs.getColor(R.styleable.UICalendar_item_backgroundColor, itemBackgroundColor)
+
         var selectedItemBackgroundDrawable = attrs.getDrawable(R.styleable.UICalendar_selectedItem_background)
         if (selectedItemBackgroundDrawable != null) {
             this.selectedItemBackgroundDrawable = selectedItemBackgroundDrawable

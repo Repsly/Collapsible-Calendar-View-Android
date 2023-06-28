@@ -6,7 +6,6 @@ package com.shrikanthravi.collapsiblecalendarview.widget
 
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Handler
 import android.util.AttributeSet
@@ -20,6 +19,7 @@ import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.shrikanthravi.collapsiblecalendarview.R
 import com.shrikanthravi.collapsiblecalendarview.data.CalendarAdapter
 import com.shrikanthravi.collapsiblecalendarview.data.Day
@@ -27,8 +27,6 @@ import com.shrikanthravi.collapsiblecalendarview.data.Event
 import com.shrikanthravi.collapsiblecalendarview.data.Schedule
 import com.shrikanthravi.collapsiblecalendarview.view.BounceAnimator
 import com.shrikanthravi.collapsiblecalendarview.view.ExpandIconView
-import kotlinx.android.synthetic.main.day_layout.view.*
-import kotlinx.android.synthetic.main.widget_collapsible_calendarview.view.*
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
@@ -257,6 +255,8 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
                 val txtDay = view.findViewById<View>(R.id.txt_day) as TextView
                 txtDay.setBackgroundColor(Color.TRANSPARENT)
                 txtDay.setTextColor(textColor)
+
+                view.setBackgroundColor(itemBackgroundColor)
 
                 // set today's item
                 if (isToday(day)) {

@@ -15,6 +15,7 @@
 
         <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
             app:selectedItem_textColor="#FFFFFF"
+            app:item_backgroundColor="@color/schedule_missed"
             app:selectedItem_background="@drawable/circle_gray_solid_background"
             app:number_of_weeks="6"
             app:monthlyViewOnly="true"
