@@ -64,9 +64,10 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
     }
 
     override fun onScheduleClicked(tag: Any) {
-        if (tag is String) {
+        if (tag is Schedule) {
             mListener?.onScheduleClicked(tag)
         } else if (tag is Day) {
+            select(tag)
             Log.e("DAN", tag.day.toString())
         }
     }
@@ -350,7 +351,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
         val newMonth = day.month
         val oldYear = cal.get(Calendar.YEAR)
         val oldMonth = cal.get(Calendar.MONTH)
-        if (newMonth != oldMonth) {
+        if (newMonth != oldMonth && !monthlyViewOnly) {
             cal.set(day.year, day.month, 1)
 
             if (newYear > oldYear || newMonth > oldMonth) {
@@ -647,6 +648,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
     }
 
     fun select(day: Day) {
+
         selectedItem = Day(day.year, day.month, day.day)
 
         redraw()
@@ -691,7 +693,7 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
 
         fun onDayChanged()
 
-        fun onScheduleClicked(scheduleId: String)
+        fun onScheduleClicked(schedule: Schedule)
     }
 
     fun setExpandIconVisible(visible: Boolean) {

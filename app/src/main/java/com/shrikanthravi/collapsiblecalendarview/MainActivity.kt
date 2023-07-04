@@ -153,8 +153,8 @@ class MainActivity : AppCompatActivity(){
 
             }
 
-            override fun onScheduleClicked(scheduleId: String) {
-                Log.e("aaa", scheduleId)
+            override fun onScheduleClicked(schedule: Schedule) {
+                Log.e("aaa", schedule.tag)
             }
         })
 

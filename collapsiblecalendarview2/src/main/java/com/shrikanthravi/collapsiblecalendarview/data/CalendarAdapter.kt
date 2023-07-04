@@ -195,7 +195,7 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
                         addedItems++
                         addScheduleView(
                             item.placeName,
-                            item.tag,
+                            item,
                             item.type.color,
                             holderView,
                             density
