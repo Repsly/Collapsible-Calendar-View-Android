@@ -647,13 +647,13 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
         reload()
     }
 
-    fun select(day: Day) {
+    fun select(day: Day, triggerListener: Boolean = true) {
 
         selectedItem = Day(day.year, day.month, day.day)
 
         redraw()
 
-        if (mListener != null) {
+        if (mListener != null && triggerListener) {
             mListener!!.onDaySelect()
         }
     }
