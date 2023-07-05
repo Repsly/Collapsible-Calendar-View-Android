@@ -80,6 +80,11 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
         mEventList.clear()
     }
 
+    fun addEvents(events: List<Event>) {
+        mEventList.clear()
+        mEventList.addAll(events)
+    }
+
     fun addSchedules(schedule: List<Schedule>) {
         mScheduleList.clear()
         mScheduleList.addAll(schedule)

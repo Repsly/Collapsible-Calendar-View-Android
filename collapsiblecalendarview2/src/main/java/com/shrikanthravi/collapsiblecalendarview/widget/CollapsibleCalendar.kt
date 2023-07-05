@@ -398,6 +398,13 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
         reload()
     }
 
+    fun addEvents(events: List<Event>) {
+        mAdapter?.addEvents(events)
+
+
+        reload()
+    }
+
     fun addSchedules(schedules: List<Schedule>) {
         mAdapter?.addSchedules(schedules)
 

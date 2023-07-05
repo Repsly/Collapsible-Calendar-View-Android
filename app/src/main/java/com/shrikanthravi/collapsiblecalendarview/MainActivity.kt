@@ -12,6 +12,7 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shrikanthravi.collapsiblecalendarview.data.Day
+import com.shrikanthravi.collapsiblecalendarview.data.Event
 import com.shrikanthravi.collapsiblecalendarview.data.Schedule
 import com.shrikanthravi.collapsiblecalendarview.data.ScheduleType
 import com.shrikanthravi.collapsiblecalendarview.view.OnSwipeTouchListener
@@ -85,14 +86,26 @@ class MainActivity : AppCompatActivity(){
         calendar.set(Calendar.MONTH, Calendar.JULY)
         calendar.set(Calendar.DAY_OF_MONTH, 11)
 
-        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), R.color.cardview_shadow_end_color)
-        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, R.color.cardview_shadow_end_color)
-        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 2, R.color.cardview_shadow_end_color)
-        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 3, R.color.cardview_shadow_end_color)
-        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 4, R.color.cardview_shadow_end_color)
-        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 5, R.color.cardview_shadow_end_color)
+        val events = mutableListOf<Event>()
 
-        collapsibleCalendar.removeEvents()
+        events.add(Event(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), R.color.cardview_shadow_end_color))
+        events.add(Event(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, R.color.cardview_shadow_end_color))
+        events.add(Event(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 2, R.color.cardview_shadow_end_color))
+        events.add(Event(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 3, R.color.cardview_shadow_end_color))
+        events.add(Event(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 4, R.color.cardview_shadow_end_color))
+        events.add(Event(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 5, R.color.cardview_shadow_end_color))
+        events.add(Event(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 6, R.color.cardview_shadow_end_color))
+
+        collapsibleCalendar.addEvents(events)
+//        collapsibleCalendar.addEventTag()
+//        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, R.color.cardview_shadow_end_color)
+//        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 2, R.color.cardview_shadow_end_color)
+//        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 3, R.color.cardview_shadow_end_color)
+//        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 4, R.color.cardview_shadow_end_color)
+//        collapsibleCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 5, R.color.cardview_shadow_end_color)
+
+
+        //collapsibleCalendar.removeEvents()
 
         val schedules = mutableListOf<Schedule>()
         schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.MISSED, "Place 1", "1"))
