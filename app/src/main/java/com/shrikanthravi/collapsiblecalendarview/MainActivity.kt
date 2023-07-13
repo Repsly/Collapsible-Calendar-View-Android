@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(){
 
 
         collapsibleCalendar = findViewById(R.id.collapsibleCalendarView)
-        collapsibleCalendar.expand(0)
+        //collapsibleCalendar.expand(0)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val wf: WeekFields = WeekFields.of(collapsibleCalendar.getCurrentLocale(this))
@@ -163,6 +163,8 @@ class MainActivity : AppCompatActivity(){
             }
 
             override fun onWeekChange(position: Int) {
+                val items = collapsibleCalendar.getWeekItems()
+                Log.e("week change", position.toString())
 
             }
 

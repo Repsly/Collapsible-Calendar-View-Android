@@ -17,8 +17,6 @@
             app:selectedItem_textColor="#FFFFFF"
             app:item_backgroundColor="@color/schedule_missed"
             app:selectedItem_background="@drawable/circle_gray_solid_background"
-            app:number_of_weeks="6"
-            app:monthlyViewOnly="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toTopOf="@+id/view"

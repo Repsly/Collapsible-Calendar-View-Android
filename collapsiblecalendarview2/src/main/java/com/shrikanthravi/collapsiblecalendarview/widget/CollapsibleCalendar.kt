@@ -422,6 +422,18 @@ class CollapsibleCalendar : UICalendar, View.OnClickListener, CalendarAdapter.Sc
         return mAdapter?.getItems()
     }
 
+    fun getCurrentWeekIndex(): Int {
+        return mCurrentWeekIndex
+    }
+
+    fun getWeekItems(): MutableList<Day>? {
+        val daysPerWeek = 7
+        val startIndex = (mCurrentWeekIndex) * daysPerWeek
+        val endIndex = startIndex + daysPerWeek
+
+        return mAdapter?.getItems()?.subList(startIndex, endIndex)
+    }
+
     fun prevMonth() {
         val cal = mAdapter!!.calendar
         params.let {
