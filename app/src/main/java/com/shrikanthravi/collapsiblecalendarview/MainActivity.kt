@@ -132,6 +132,9 @@ class MainActivity : AppCompatActivity(){
 
         val items = collapsibleCalendar.getItems()
 
+
+        collapsibleCalendar.weekViewOnly = true
+
         collapsibleCalendar.setCalendarListener(object : CollapsibleCalendar.CalendarListener {
             override fun onDayChanged() {
 

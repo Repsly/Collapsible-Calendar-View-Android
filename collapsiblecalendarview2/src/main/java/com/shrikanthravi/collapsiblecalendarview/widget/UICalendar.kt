@@ -82,6 +82,10 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         set(disableCollapse) {
             field = disableCollapse
         }
+    var weekViewOnly = false
+        set(disableExpand) {
+            field = disableExpand
+        }
     var hideArrow = true
         set(value: Boolean) {
             field = value
@@ -179,7 +183,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
     fun getSwipe(context: Context): OnSwipeTouchListener {
         return object : OnSwipeTouchListener(context) {
             override fun onSwipeTop() {
-                if (state == STATE_EXPANDED && !monthlyViewOnly)
+                if (state == STATE_EXPANDED && !monthlyViewOnly && !weekViewOnly)
                     expandIconView.performClick()
             }
 
@@ -200,7 +204,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
             }
 
             override fun onSwipeBottom() {
-                if (state == STATE_COLLAPSED && !monthlyViewOnly)
+                if (state == STATE_COLLAPSED && !monthlyViewOnly && !weekViewOnly)
                     expandIconView.performClick()
             }
         }
