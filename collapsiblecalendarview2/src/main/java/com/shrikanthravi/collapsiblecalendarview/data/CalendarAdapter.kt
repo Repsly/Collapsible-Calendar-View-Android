@@ -203,7 +203,8 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
                             item,
                             item.type.color,
                             holderView,
-                            density
+                            density,
+                            item.contentDescription
                         )
                     } else {
                         break
@@ -216,7 +217,8 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
                         day,
                         R.color.white,
                         holderView,
-                        density
+                        density,
+                        ""
                     )
                 }
             }
@@ -232,10 +234,12 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
         tag: Any,
         color: Int,
         holderView: LinearLayout,
-        density: Float
+        density: Float,
+        contentDescription: String
     ) {
 
         val scheduleView = TextView(context)
+        scheduleView.contentDescription = contentDescription
         scheduleView.text = placeName
         scheduleView.tag = tag
         scheduleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)

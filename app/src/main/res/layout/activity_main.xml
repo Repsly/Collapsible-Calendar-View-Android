@@ -19,6 +19,7 @@
             app:selectedItem_background="@drawable/circle_gray_solid_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:monthlyViewOnly="true"
             app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/collapsibleCalendarView">

@@ -108,21 +108,21 @@ class MainActivity : AppCompatActivity(){
         //collapsibleCalendar.removeEvents()
 
         val schedules = mutableListOf<Schedule>()
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.MISSED, "Place 1", "1"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.DONE, "Place 2", "2"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.UNPLANNED, "Place 3 12 152152 15 51", "3"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 4", "4"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 5", "5"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 6", "6"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.MISSED, "Place 1", "1", "1"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.DONE, "Place 2", "2", "2"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.UNPLANNED, "Place 3 12 152152 15 51", "3", "3"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 4", "4", "4"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 5", "5", "5"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 6", "6", "6"))
 //        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), ScheduleType.SCHEDULED, "Place 7", "7"))
 
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.MISSED, "Place 11", "1"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.DONE, "Place 22", "2"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.UNPLANNED, "Place 33 12 152152 15 51", "3"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 44", "4"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 55", "5"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 66", "6"))
-        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 77", "7"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.MISSED, "Place 11", "1","11"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.DONE, "Place 22", "2", "22"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.UNPLANNED, "Place 33 12 152152 15 51", "33", "33"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 44", "4", "44"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 55", "5", "55"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 66", "6", "66"))
+        schedules.add(Schedule(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH) + 1, ScheduleType.SCHEDULED, "Place 77", "7", "77"))
 
         collapsibleCalendar.addSchedules(schedules)
 
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity(){
         val items = collapsibleCalendar.getItems()
 
 
-        collapsibleCalendar.weekViewOnly = true
+        collapsibleCalendar.weekViewOnly = false
 
         collapsibleCalendar.setCalendarListener(object : CollapsibleCalendar.CalendarListener {
             override fun onDayChanged() {
