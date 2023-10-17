@@ -150,6 +150,9 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
             val imgEventTag = view.findViewById<View>(R.id.img_event_tag) as ImageView
             val holderView = view.findViewById<View>(R.id.holder_view) as LinearLayout
 
+            val numMonthReal = numMonth + 1
+            view.contentDescription = "ScheduleDayContainer_$numYear-$numMonthReal-$numDay"
+
             txtDay.text = day.day.toString()
             if (day.month != calendar.get(Calendar.MONTH)) {
                 txtDay.alpha = 0.3f
@@ -218,7 +221,7 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
                         R.color.white,
                         holderView,
                         density,
-                        ""
+                        "groupedVisitsExpandPlusLabel"
                     )
                 }
             }
