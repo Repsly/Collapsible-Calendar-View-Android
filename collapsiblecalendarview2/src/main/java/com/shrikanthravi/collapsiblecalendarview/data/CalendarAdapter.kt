@@ -151,7 +151,15 @@ class CalendarAdapter(private val context: Context, cal: Calendar) {
             val holderView = view.findViewById<View>(R.id.holder_view) as LinearLayout
 
             val numMonthReal = numMonth + 1
-            view.contentDescription = "ScheduleDayContainer_$numYear-$numMonthReal-$numDay"
+            var numMonthString = numMonthReal.toString()
+            var numDayString = numDay.toString()
+            if (numMonthReal < 10) {
+                numMonthString = "0$numMonthReal"
+            }
+            if (numDay < 10) {
+                numDayString = "0$numDay"
+            }
+            view.contentDescription = "ScheduleDayContainer_$numYear-$numMonthString-$numDayString"
 
             txtDay.text = day.day.toString()
             if (day.month != calendar.get(Calendar.MONTH)) {
